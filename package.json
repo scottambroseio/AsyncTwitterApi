@@ -9,7 +9,11 @@
     "test": "mocha --harmony"
   },
   "devDependencies": {
+    "co": "^4.3.1",
     "gulp": "^3.8.11",
     "gulp-6to5": "^3.0.0"
+  },
+  "dependencies": {
+    "purest": "^1.1.4"
   }
 }
