@@ -1,0 +1,15 @@
+{
+  "name": "TwitterApi",
+  "version": "1.0.0",
+  "description": "Async friendly Twitter Api",
+  "private": true,
+  "author": "Scott Ranger",
+  "main": "dist/TwitterApi.js",
+  "scripts": {
+    "test": "mocha --harmony"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-6to5": "^3.0.0"
+  }
+}
