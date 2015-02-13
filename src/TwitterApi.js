@@ -5,6 +5,7 @@ var APP_SECRET = Symbol();
 var INTERNAL_API = Symbol();
 
 //todo: urls into seperate json
+//todo: data validation
 
 export default class TwitterApi {
 	constructor(app_key, app_secret) {
@@ -23,23 +24,23 @@ export default class TwitterApi {
 	}
 
 	PostTweet(data) {
-		return POST('statuses/update', data);
+		return POST.call(this, 'statuses/update', data);
 	}
 
 	SearchUsers(data) {
-		return GET('users/search', data);
+		return GET.call(this, 'users/search', data);
 	}
 
 	GetFollowers(data) {
-		return GET('followers/ids', data);
+		return GET.call(this, 'followers/ids', data);
 	}
 
 	FollowUser(data) {
-		return POST('friendships/create', data);
+		return POST.call(this, 'friendships/create', data);
 	}
 
 	UnfollowUser(data) {
-		return POST('friendships/destroy', data);
+		return POST.call(this, 'friendships/destroy', data);
 	}
 }
 

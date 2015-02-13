@@ -12,6 +12,9 @@ var APP_KEY = Symbol();
 var APP_SECRET = Symbol();
 var INTERNAL_API = Symbol();
 
+//todo: urls into seperate json
+//todo: data validation
+
 var TwitterApi = (function () {
 	function TwitterApi(app_key, app_secret) {
 		_classCallCheck(this, TwitterApi);
@@ -33,36 +36,35 @@ var TwitterApi = (function () {
 	_prototypeProperties(TwitterApi, null, {
 		PostTweet: {
 			value: function PostTweet(data) {
-				var _this = this;
-				return new Promise(function (res, rej) {
-					return _this[INTERNAL_API].post("statuses/update", data, function (error, result) {
-						return error ? rej(error) : res(result);
-					});
-				});
+				return POST.call(this, "statuses/update", data);
 			},
 			writable: true,
 			configurable: true
 		},
 		SearchUsers: {
 			value: function SearchUsers(data) {
-				var _this = this;
-				return new Promise(function (res, rej) {
-					return _this[INTERNAL_API].get("users/search", data, function (error, result) {
-						return error ? rej(error) : res(result);
-					});
-				});
+				return GET.call(this, "users/search", data);
 			},
 			writable: true,
 			configurable: true
 		},
 		GetFollowers: {
 			value: function GetFollowers(data) {
-				var _this = this;
-				return new Promise(function (res, rej) {
-					return _this[INTERNAL_API].get("followers/ids", data, function (error, result) {
-						return error ? rej(error) : res(result);
-					});
-				});
+				return GET.call(this, "followers/ids", data);
+			},
+			writable: true,
+			configurable: true
+		},
+		FollowUser: {
+			value: function FollowUser(data) {
+				return POST.call(this, "friendships/create", data);
+			},
+			writable: true,
+			configurable: true
+		},
+		UnfollowUser: {
+			value: function UnfollowUser(data) {
+				return POST.call(this, "friendships/destroy", data);
 			},
 			writable: true,
 			configurable: true
@@ -75,8 +77,20 @@ var TwitterApi = (function () {
 module.exports = TwitterApi;
 
 
-// friendships/destroy
-// friendships/create
-// followers/ids
+function GET(url, data) {
+	var _this = this;
+	return new Promise(function (res, rej) {
+		return _this[INTERNAL_API].get(url, data, function (error, result) {
+			return error ? rej(error) : res(result);
+		});
+	});
+}
 
-//todo: urls into seperate json
+function POST(url, data) {
+	var _this = this;
+	return new Promise(function (res, rej) {
+		return _this[INTERNAL_API].post(url, data, function (error, result) {
+			return error ? rej(error) : res(result);
+		});
+	});
+}
