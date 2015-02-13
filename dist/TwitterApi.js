@@ -12,7 +12,7 @@ var APP_KEY = Symbol();
 var APP_SECRET = Symbol();
 var INTERNAL_API = Symbol();
 
-//todo: urls into seperate json
+//todo: urls into seperate json so easier to change if urls change
 //todo: data validation
 
 var TwitterApi = (function () {

@@ -45,21 +45,9 @@ export default class TwitterApi {
 }
 
 function GET(url, data) {
-	return new Promise((res, rej) => {
-		return this[INTERNAL_API].get(
-			url,
-			data,
-			(error, result) => error ? rej(error) : res(result)
-		);
-	});
+	return new Promise((res, rej) => this[INTERNAL_API].get(url, data, (error, result) => error ? rej(error) : res(result)));
 }
 
 function POST(url, data) {
-	return new Promise((res, rej) => {
-		return this[INTERNAL_API].post(
-			url,
-			data,
-			(error, result) => error ? rej(error) : res(result)
-		);
-	});
+	return new Promise((res, rej) =>  this[INTERNAL_API].post(url, data, (error, result) => error ? rej(error) : res(result)));
 }
