@@ -1,25 +1,26 @@
 import Purest from "Purest";
 
-var APP_KEY = Symbol();
-var APP_SECRET = Symbol();
-var INTERNAL_API = Symbol();
+let APP_KEY = Symbol();
+let APP_SECRET = Symbol();
+let INTERNAL_API = Symbol();
 
 //todo: urls into seperate json so easier to change if urls change
 //todo: data validation
 
 export default class TwitterApi {
-	constructor(app_key, app_secret) {
-		if (app_key === undefined) throw "Error: TwitterApi - Twitter app key must be provided";
-		if (app_secret === undefined) throw "Error: TwitterApi - Twitter app secret must be provided";
-		if (typeof(app_key) != "string" || !app_key) throw "Error: TwitterApi - Twitter app key must be a valid string";
-		if (typeof(app_secret) != "string" || !app_secret) throw "Error: TwitterApi - Twitter app secret must be a valid string";
+	constructor() {
+		let { TWITTER_KEY, TWITTER_SECRET } = process.env;
 
-		this[APP_KEY] = app_key;
-		this[APP_SECRET] = app_secret;
+		if (typeof(TWITTER_KEY) != "string" || !TWITTER_KEY) throw "Error: TwitterApi - Invalid enviroment variable - TWITTER_KEY";
+		if (typeof(TWITTER_SECRET) != "string" || !TWITTER_SECRET) throw "Error: TwitterApi - Invalid enviroment variable - TWITTER_SECRET";
+
+
+		this[APP_KEY] = TWITTER_KEY;
+		this[APP_SECRET] = TWITTER_SECRET;
 		this[INTERNAL_API] = new Purest({
 			provider: 'twitter',
-			consumerKey: app_key,
-			consumerSecret: app_secret
+			consumerKey: TWITTER_KEY,
+			consumerSecret: TWITTER_SECRET
 		});
 	}
 

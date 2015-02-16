@@ -16,20 +16,24 @@ var INTERNAL_API = Symbol();
 //todo: data validation
 
 var TwitterApi = (function () {
-	function TwitterApi(app_key, app_secret) {
+	function TwitterApi() {
 		_classCallCheck(this, TwitterApi);
 
-		if (app_key === undefined) throw "Error: TwitterApi - Twitter app key must be provided";
-		if (app_secret === undefined) throw "Error: TwitterApi - Twitter app secret must be provided";
-		if (typeof app_key != "string" || !app_key) throw "Error: TwitterApi - Twitter app key must be a valid string";
-		if (typeof app_secret != "string" || !app_secret) throw "Error: TwitterApi - Twitter app secret must be a valid string";
+		var _process$env = process.env;
+		var TWITTER_KEY = _process$env.TWITTER_KEY;
+		var TWITTER_SECRET = _process$env.TWITTER_SECRET;
 
-		this[APP_KEY] = app_key;
-		this[APP_SECRET] = app_secret;
+
+		if (typeof TWITTER_KEY != "string" || !TWITTER_KEY) throw "Error: TwitterApi - Invalid enviroment variable - TWITTER_KEY";
+		if (typeof TWITTER_SECRET != "string" || !TWITTER_SECRET) throw "Error: TwitterApi - Invalid enviroment variable - TWITTER_SECRET";
+
+
+		this[APP_KEY] = TWITTER_KEY;
+		this[APP_SECRET] = TWITTER_SECRET;
 		this[INTERNAL_API] = new Purest({
 			provider: "twitter",
-			consumerKey: app_key,
-			consumerSecret: app_secret
+			consumerKey: TWITTER_KEY,
+			consumerSecret: TWITTER_SECRET
 		});
 	}
 
