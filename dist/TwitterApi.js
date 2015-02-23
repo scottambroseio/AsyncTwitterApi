@@ -54,7 +54,7 @@ var TwitterApi = (function () {
 		},
 		GetFollowers: {
 			value: function GetFollowers(data) {
-				return GET.call(this, "followers/ids", data);
+				return GET.call(this, "followers/list", data);
 			},
 			writable: true,
 			configurable: true

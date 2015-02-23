@@ -33,7 +33,7 @@ export default class TwitterApi {
 	}
 
 	GetFollowers(data) {
-		return GET.call(this, 'followers/ids', data);
+		return GET.call(this, 'followers/list', data);
 	}
 
 	FollowUser(data) {
