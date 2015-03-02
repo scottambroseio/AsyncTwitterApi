@@ -59,6 +59,13 @@ var TwitterApi = (function () {
 			writable: true,
 			configurable: true
 		},
+		GetFollowing: {
+			value: function GetFollowing(data) {
+				return GET.call(this, "friends/ids", data);
+			},
+			writable: true,
+			configurable: true
+		},
 		FollowUser: {
 			value: function FollowUser(data) {
 				return POST.call(this, "friendships/create", data);

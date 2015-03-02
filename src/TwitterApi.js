@@ -36,6 +36,10 @@ export default class TwitterApi {
 		return GET.call(this, 'followers/list', data);
 	}
 
+	GetFollowing(data) {
+		return GET.call(this, 'friends/ids', data);
+	}
+
 	FollowUser(data) {
 		return POST.call(this, 'friendships/create', data);
 	}
