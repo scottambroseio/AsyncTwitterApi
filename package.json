@@ -10,9 +10,9 @@
   },
   "devDependencies": {
     "gulp": "^3.8.11",
-    "gulp-babel": "^4.0.0"
+    "gulp-babel": "^6.1.2"
   },
   "dependencies": {
-    "purest": "^1.1.4"
+    "purest": "^3.0.1"
   }
 }
